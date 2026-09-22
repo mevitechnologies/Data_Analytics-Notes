@@ -227,6 +227,9 @@ body.projector .navbar{font-size:1rem}
     <div class="collapse navbar-collapse" id="navMenu">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item"><a class="nav-link" href="#basics">Basics</a></li>
+        <li class="nav-item"><a class="nav-link" href="#data-types">Data Types</a></li>
+        <li class="nav-item"><a class="nav-link" href="#data-generation">Data Generation</a></li>
+        <li class="nav-item"><a class="nav-link" href="#data-growth">Data Growth</a></li>
         <li class="nav-item"><a class="nav-link" href="#workflow">Workflow</a></li>
         <li class="nav-item"><a class="nav-link" href="#python">Python</a></li>
         <li class="nav-item"><a class="nav-link" href="#pandas">Pandas</a></li>
@@ -278,6 +281,7 @@ body.projector .navbar{font-size:1rem}
     <div class="section-kicker">Start Here</div>
     <h2>How to use this tutorial</h2>
     <p>This page is deliberately written for beginners. Every major concept answers four questions: <strong>What is it?</strong>, <strong>Why do we need it?</strong>, <strong>How does it work?</strong>, and <strong>Where is it used?</strong></p>
+    <div class="callout purple"><strong>New expanded foundation:</strong> Before moving into Python and Pandas, this version explains data categories, measurement scales, structured and unstructured data, data sources, how data is generated, why data is growing rapidly, Big Data, the data lifecycle, data quality and metadata.</div>
   </div>
   <div class="row g-4">
     <div class="col-lg-8">
@@ -477,6 +481,610 @@ body.projector .navbar{font-size:1rem}
           <div class="col-6"><div class="metric"><div class="value">9</div><div>Example fields shown in the case</div></div></div>
         </div>
         <div class="callout mt-4">These figures belong to the fictional teaching case. They illustrate the analysis process and should not be interpreted as real company statistics.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+
+<section class="section alt" id="data-types">
+<div class="container">
+  <div class="section-head">
+    <div class="section-kicker">Chapter 2 · Data Fundamentals</div>
+    <h2>Types of Data — Understand the Different Ways Data Can Exist</h2>
+    <p>
+      Before analysing a dataset, an analyst must understand what kind of data each value represents.
+      The same number can mean very different things depending on its context. Correctly identifying data types
+      helps us choose suitable calculations, cleaning methods, visualizations and statistical techniques.
+    </p>
+  </div>
+
+  <div class="big-definition">
+    <i class="bi bi-database-fill me-2"></i>
+    <strong>Data type answers a basic question:</strong> “What kind of information is stored in this value, and what operations make sense for it?”
+  </div>
+
+  <div class="row g-4 mt-4">
+    <div class="col-md-6 col-lg-4">
+      <div class="info-card">
+        <div class="icon-box"><i class="bi bi-chat-left-text"></i></div>
+        <h3>Qualitative Data</h3>
+        <p>
+          Qualitative data describes qualities, labels, characteristics or categories rather than directly measuring
+          an amount.
+        </p>
+        <p><strong>Examples:</strong> city, product category, department, customer feedback, shirt colour.</p>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <div class="info-card">
+        <div class="icon-box"><i class="bi bi-123"></i></div>
+        <h3>Quantitative Data</h3>
+        <p>
+          Quantitative data represents quantities that can be measured or counted numerically.
+        </p>
+        <p><strong>Examples:</strong> price, age, quantity, salary, marks, temperature.</p>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <div class="info-card">
+        <div class="icon-box"><i class="bi bi-tags-fill"></i></div>
+        <h3>Categorical Data</h3>
+        <p>
+          Categorical data places observations into named groups or categories.
+        </p>
+        <p><strong>Examples:</strong> Male/Female/Other, T-Shirt/Jeans/Jacket, Bengaluru/Mumbai/Delhi.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5">
+    <h3>1. Qualitative vs Quantitative Data</h3>
+    <div class="table-wrap mt-3">
+      <table class="table">
+        <thead>
+          <tr><th>Aspect</th><th>Qualitative</th><th>Quantitative</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Meaning</strong></td><td>Describes a quality or category.</td><td>Represents a measurable or countable quantity.</td></tr>
+          <tr><td><strong>Typical values</strong></td><td>Red, Bengaluru, Premium, Excellent.</td><td>25, 99.5, ₹2,500, 120.</td></tr>
+          <tr><td><strong>Common analysis</strong></td><td>Counts, proportions, category comparisons.</td><td>Mean, median, standard deviation, distributions.</td></tr>
+          <tr><td><strong>Common charts</strong></td><td>Bar chart, count plot, pie/donut in limited cases.</td><td>Histogram, box plot, line chart, scatter plot.</td></tr>
+          <tr><td><strong>Example question</strong></td><td>Which product category is most common?</td><td>What is the average order value?</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="mt-5">
+    <h3>2. Categorical Data: Nominal and Ordinal</h3>
+    <div class="row g-4 mt-2">
+      <div class="col-lg-6">
+        <div class="explain">
+          <div class="big-definition"><strong>Nominal data</strong> contains categories with no natural ranking or order.</div>
+          <p class="mt-4">
+            Examples include city, blood group, product category, department and colour.
+            “Mumbai” is not mathematically greater or smaller than “Bengaluru.”
+          </p>
+          <div class="callout">
+            <strong>Important:</strong> If categories are represented by numbers such as 1 = Bengaluru and 2 = Mumbai,
+            those numbers are labels. Calculating an average of those codes would not have meaningful interpretation.
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="explain">
+          <div class="big-definition"><strong>Ordinal data</strong> contains categories that have a meaningful order or ranking.</div>
+          <p class="mt-4">
+            Examples include satisfaction levels such as Poor → Average → Good → Excellent,
+            or service ratings such as Low → Medium → High.
+          </p>
+          <div class="callout purple">
+            <strong>Important:</strong> The order matters, but the distance between categories may not be equal.
+            “Excellent” is above “Good,” but that does not mean the numerical difference between them is exactly measurable.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5">
+    <h3>3. Numerical Data: Discrete and Continuous</h3>
+    <div class="row g-4 mt-2">
+      <div class="col-lg-6">
+        <div class="info-card">
+          <h3>Discrete Data</h3>
+          <p>
+            Discrete data consists of countable values, usually whole-number counts.
+            You can count them individually.
+          </p>
+          <ul>
+            <li>Number of orders = 500</li>
+            <li>Number of students = 60</li>
+            <li>Number of products purchased = 4</li>
+            <li>Number of complaints = 12</li>
+          </ul>
+          <div class="callout green"><strong>Think: “How many?”</strong> Discrete data commonly comes from counting.</div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="info-card">
+          <h3>Continuous Data</h3>
+          <p>
+            Continuous data can take values across a range and can be measured with increasing precision.
+          </p>
+          <ul>
+            <li>Height = 172.6 cm</li>
+            <li>Weight = 68.45 kg</li>
+            <li>Temperature = 28.7 °C</li>
+            <li>Delivery time = 34.52 minutes</li>
+          </ul>
+          <div class="callout"><strong>Think: “How much?” or “How long?”</strong> Continuous data commonly comes from measurement.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5">
+    <h3>4. Measurement Scales: Nominal, Ordinal, Interval and Ratio</h3>
+    <p>
+      Measurement scales help us understand what mathematical operations are meaningful for a variable.
+    </p>
+    <div class="table-wrap mt-3">
+      <table class="table">
+        <thead><tr><th>Scale</th><th>Meaning</th><th>Example</th><th>What is important?</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Nominal</strong></td>
+            <td>Names or categories without order.</td>
+            <td>City, colour, product type.</td>
+            <td>Identity and frequency.</td>
+          </tr>
+          <tr>
+            <td><strong>Ordinal</strong></td>
+            <td>Categories with meaningful order.</td>
+            <td>Low, Medium, High.</td>
+            <td>Order/ranking.</td>
+          </tr>
+          <tr>
+            <td><strong>Interval</strong></td>
+            <td>Ordered numerical scale with meaningful differences but no true zero.</td>
+            <td>Temperature in °C.</td>
+            <td>Differences are meaningful; ratios require care.</td>
+          </tr>
+          <tr>
+            <td><strong>Ratio</strong></td>
+            <td>Numerical scale with meaningful differences and a true zero.</td>
+            <td>Weight, height, revenue, quantity.</td>
+            <td>Both differences and ratios can be interpreted.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="section" id="data-structure">
+<div class="container">
+  <div class="section-head">
+    <div class="section-kicker">Chapter 3 · Data Structure</div>
+    <h2>Structured, Semi-Structured and Unstructured Data</h2>
+    <p>
+      Data can also be classified according to how neatly it is organised and how easily a computer can interpret
+      its structure.
+    </p>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-lg-4">
+      <div class="info-card">
+        <div class="icon-box"><i class="bi bi-table"></i></div>
+        <h3>Structured Data</h3>
+        <p>
+          Structured data follows a predefined structure, usually with rows, columns, fields and consistent data types.
+        </p>
+        <p><strong>Examples:</strong> SQL tables, Excel sheets, CSV files and transaction databases.</p>
+        <div class="callout green"><strong>Easy to picture:</strong> a clean table with clearly defined columns.</div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="info-card">
+        <div class="icon-box"><i class="bi bi-braces"></i></div>
+        <h3>Semi-Structured Data</h3>
+        <p>
+          Semi-structured data does not follow one rigid table format but contains tags, keys, metadata or other
+          markers that provide organisation.
+        </p>
+        <p><strong>Examples:</strong> JSON, XML, many API responses and event records.</p>
+        <div class="callout"><strong>Think:</strong> flexible structure with identifiable fields.</div>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="info-card">
+        <div class="icon-box"><i class="bi bi-file-earmark-richtext"></i></div>
+        <h3>Unstructured Data</h3>
+        <p>
+          Unstructured data does not naturally fit into a fixed row-and-column format.
+        </p>
+        <p><strong>Examples:</strong> images, videos, audio recordings, documents, free-form text and social media content.</p>
+        <div class="callout purple"><strong>Think:</strong> rich information that may require specialized processing.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5">
+    <h3>Example: One Customer Interaction in Different Forms</h3>
+    <div class="table-wrap mt-3">
+      <table class="table">
+        <thead><tr><th>Format</th><th>Example</th><th>Possible analysis</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Structured</strong></td><td>Customer_ID = 1042, Order_Value = 2499</td><td>Revenue and customer analysis.</td></tr>
+          <tr><td><strong>Semi-structured</strong></td><td>{ "customer_id": 1042, "order": 2499 }</td><td>API and application event processing.</td></tr>
+          <tr><td><strong>Unstructured</strong></td><td>“The jacket looked great but delivery was late.”</td><td>Text analysis and sentiment/topic extraction.</td></tr>
+          <tr><td><strong>Multimedia</strong></td><td>Customer-uploaded product image or video.</td><td>Computer vision or multimedia analysis.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="section alt" id="data-sources">
+<div class="container">
+  <div class="section-head">
+    <div class="section-kicker">Chapter 4 · Data Sources</div>
+    <h2>Where Does Data Come From?</h2>
+    <p>
+      Data analysis begins with data collection. Understanding the source helps an analyst understand the reliability,
+      context, limitations and appropriate use of the data.
+    </p>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-lg-6">
+      <div class="explain">
+        <h3>Primary Data</h3>
+        <div class="big-definition">Primary data is collected directly for a specific purpose or study.</div>
+        <p class="mt-4"><strong>Examples:</strong> surveys, interviews, experiments, observations and feedback forms created for the current study.</p>
+        <p><strong>Example:</strong> A company asks 1,000 customers to complete a survey about a new product.</p>
+        <div class="callout green"><strong>Advantage:</strong> The collection process can be designed around the exact question.</div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="explain">
+        <h3>Secondary Data</h3>
+        <div class="big-definition">Secondary data was collected previously by another person, team or organisation and is reused for a new analysis.</div>
+        <p class="mt-4"><strong>Examples:</strong> public datasets, government statistics, published reports, historical company records and research datasets.</p>
+        <p><strong>Example:</strong> An analyst uses historical sales records collected by the organisation to study seasonal demand.</p>
+        <div class="callout"><strong>Important:</strong> Always check the source, definitions, date range and collection method before using secondary data.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5">
+    <h3>Common Modern Data Sources</h3>
+    <div class="row g-3 mt-2">
+      <div class="col-md-6 col-lg-4"><div class="info-card"><h4><i class="bi bi-globe2"></i> Websites</h4><p>Page views, clicks, searches, registrations and purchases.</p></div></div>
+      <div class="col-md-6 col-lg-4"><div class="info-card"><h4><i class="bi bi-phone"></i> Mobile Apps</h4><p>App events, sessions, interactions, purchases and device information.</p></div></div>
+      <div class="col-md-6 col-lg-4"><div class="info-card"><h4><i class="bi bi-cpu"></i> IoT Sensors</h4><p>Temperature, vibration, pressure, location and machine readings.</p></div></div>
+      <div class="col-md-6 col-lg-4"><div class="info-card"><h4><i class="bi bi-camera-video"></i> Cameras</h4><p>Images and video used for monitoring, quality inspection and computer vision.</p></div></div>
+      <div class="col-md-6 col-lg-4"><div class="info-card"><h4><i class="bi bi-chat-dots"></i> Social Platforms</h4><p>Posts, comments, reactions, engagement and other available platform data.</p></div></div>
+      <div class="col-md-6 col-lg-4"><div class="info-card"><h4><i class="bi bi-credit-card"></i> Transactions</h4><p>Purchases, payments, refunds and account activity.</p></div></div>
+      <div class="col-md-6 col-lg-4"><div class="info-card"><h4><i class="bi bi-file-earmark-text"></i> Documents</h4><p>PDFs, reports, forms, invoices and business records.</p></div></div>
+      <div class="col-md-6 col-lg-4"><div class="info-card"><h4><i class="bi bi-mic"></i> Audio</h4><p>Calls, recordings, voice commands and speech datasets.</p></div></div>
+      <div class="col-md-6 col-lg-4"><div class="info-card"><h4><i class="bi bi-cloud-arrow-down"></i> APIs</h4><p>Data delivered by software systems in machine-readable formats.</p></div></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="section" id="data-generation">
+<div class="container">
+  <div class="section-head">
+    <div class="section-kicker">Chapter 5 · Data Generation</div>
+    <h2>How Is Data Generated?</h2>
+    <p>
+      Data is continuously created whenever people, machines, software systems and digital services perform activities
+      that can be recorded.
+    </p>
+  </div>
+
+  <div class="big-definition">
+    <i class="bi bi-lightning-charge-fill me-2"></i>
+    <strong>Key idea:</strong> Modern data is not generated only when a person manually enters a value.
+    Many digital systems create records automatically as part of normal activity.
+  </div>
+
+  <div class="row g-4 mt-4">
+    <div class="col-md-6 col-lg-4">
+      <div class="info-card">
+        <div class="icon-box"><i class="bi bi-mouse-fill"></i></div>
+        <h3>Human Activity</h3>
+        <p>People generate data by filling forms, writing reviews, sending messages, making purchases and responding to surveys.</p>
+        <p><strong>Example:</strong> A customer gives a product 4 stars and writes a review.</p>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <div class="info-card">
+        <div class="icon-box"><i class="bi bi-code-slash"></i></div>
+        <h3>Software Events</h3>
+        <p>Applications can automatically record clicks, logins, searches, page views, errors and other events.</p>
+        <p><strong>Example:</strong> An online store records when a user adds an item to a cart.</p>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <div class="info-card">
+        <div class="icon-box"><i class="bi bi-broadcast-pin"></i></div>
+        <h3>Sensors & IoT</h3>
+        <p>Devices continuously measure physical conditions and send observations to software systems.</p>
+        <p><strong>Example:</strong> A factory sensor records machine temperature every second.</p>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <div class="info-card">
+        <div class="icon-box"><i class="bi bi-geo-alt-fill"></i></div>
+        <h3>Location Systems</h3>
+        <p>GPS-enabled devices and services can generate location-related records when appropriately collected and permitted.</p>
+        <p><strong>Example:</strong> A delivery application records the location of a delivery vehicle.</p>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <div class="info-card">
+        <div class="icon-box"><i class="bi bi-camera-reels-fill"></i></div>
+        <h3>Images & Video</h3>
+        <p>Cameras and user uploads create visual data that can later be analysed manually or with computer vision.</p>
+        <p><strong>Example:</strong> A quality-control camera captures product images on a production line.</p>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <div class="info-card">
+        <div class="icon-box"><i class="bi bi-robot"></i></div>
+        <h3>Machines & AI Systems</h3>
+        <p>Automated systems create logs, predictions, measurements, model outputs and operational records.</p>
+        <p><strong>Example:</strong> A recommendation system records which recommendation was shown and whether it was clicked.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5">
+    <h3>A Simple Example: One Online Shopping Session</h3>
+    <div class="workflow-line mt-3">
+      <div class="step"><div class="step-no">1</div><div><strong>Website opened</strong><p>A session event can be recorded.</p></div></div>
+      <div class="step"><div class="step-no">2</div><div><strong>Product searched</strong><p>The search term and timestamp may become an event.</p></div></div>
+      <div class="step"><div class="step-no">3</div><div><strong>Product viewed</strong><p>The application can record the product page interaction.</p></div></div>
+      <div class="step"><div class="step-no">4</div><div><strong>Item added to cart</strong><p>A cart event can be generated automatically.</p></div></div>
+      <div class="step"><div class="step-no">5</div><div><strong>Payment completed</strong><p>A transaction record can be created.</p></div></div>
+      <div class="step"><div class="step-no">6</div><div><strong>Review submitted</strong><p>Text and rating become additional data.</p></div></div>
+    </div>
+    <div class="callout purple">
+      <strong>Notice how quickly one activity can produce many different data points.</strong>
+      This is one reason modern organisations need systems for storing, processing, governing and analysing data.
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="section alt" id="data-growth">
+<div class="container">
+  <div class="section-head">
+    <div class="section-kicker">Chapter 6 · The Data Explosion</div>
+    <h2>Why Is Data Growing So Rapidly?</h2>
+    <p>
+      The growth of data is driven by the increasing number of connected devices, digital services, transactions,
+      sensors, applications and automated systems producing information.
+    </p>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-lg-7">
+      <div class="explain">
+        <div class="big-definition">
+          Data growth means that organisations are dealing with increasing quantities of digital information,
+          often arriving continuously and in many different formats.
+        </div>
+        <p class="mt-4">
+          Consider the difference between a traditional paper store and a modern online store. A paper store may record
+          a purchase in a ledger. An online store can automatically record searches, page views, product clicks,
+          cart events, payments, delivery updates, reviews, device information and customer-service interactions.
+        </p>
+        <p>
+          As more activities become digital and connected, the amount and variety of information available for analysis
+          can increase substantially.
+        </p>
+      </div>
+    </div>
+    <div class="col-lg-5">
+      <div class="row g-3">
+        <div class="col-6"><div class="metric"><div class="value">People</div><p>More digital interactions.</p></div></div>
+        <div class="col-6"><div class="metric"><div class="value">Devices</div><p>More connected sensors and machines.</p></div></div>
+        <div class="col-6"><div class="metric"><div class="value">Apps</div><p>More software-generated events.</p></div></div>
+        <div class="col-6"><div class="metric"><div class="value">AI</div><p>More automated processing and generated outputs.</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5">
+    <h3>Major Drivers of Data Growth</h3>
+    <div class="row g-3 mt-2">
+      <div class="col-md-6 col-lg-4"><div class="info-card"><h4>Smartphones</h4><p>Phones continuously interact with apps, networks, cameras, sensors and digital services.</p></div></div>
+      <div class="col-md-6 col-lg-4"><div class="info-card"><h4>Social Media</h4><p>Users create posts, comments, images, videos, reactions and interaction events.</p></div></div>
+      <div class="col-md-6 col-lg-4"><div class="info-card"><h4>E-Commerce</h4><p>Digital shopping creates product, customer, transaction, logistics and behavioural records.</p></div></div>
+      <div class="col-md-6 col-lg-4"><div class="info-card"><h4>IoT</h4><p>Connected devices can produce measurements continuously and at high frequency.</p></div></div>
+      <div class="col-md-6 col-lg-4"><div class="info-card"><h4>Cloud Computing</h4><p>More applications and services operate digitally and generate machine-readable records.</p></div></div>
+      <div class="col-md-6 col-lg-4"><div class="info-card"><h4>AI & Automation</h4><p>Automated systems create logs, predictions, embeddings, model outputs and monitoring information.</p></div></div>
+    </div>
+  </div>
+
+  <div class="mt-5">
+    <h3>From Data to Big Data</h3>
+    <p>
+      The term <strong>Big Data</strong> is commonly used when the scale, speed, diversity or other characteristics
+      of data create challenges that traditional approaches may not handle efficiently.
+    </p>
+    <div class="row g-3 mt-2">
+      <div class="col-md-6 col-lg"><div class="info-card"><h4>Volume</h4><p>How much data exists?</p></div></div>
+      <div class="col-md-6 col-lg"><div class="info-card"><h4>Velocity</h4><p>How quickly is new data generated and processed?</p></div></div>
+      <div class="col-md-6 col-lg"><div class="info-card"><h4>Variety</h4><p>How many formats and data types are involved?</p></div></div>
+      <div class="col-md-6 col-lg"><div class="info-card"><h4>Veracity</h4><p>How trustworthy, accurate and consistent is the data?</p></div></div>
+      <div class="col-md-6 col-lg"><div class="info-card"><h4>Value</h4><p>Can the data produce useful information or outcomes?</p></div></div>
+    </div>
+    <div class="callout">
+      <strong>The 5 Vs are a framework, not a single universal standard.</strong>
+      Different organisations and textbooks may use additional “Vs,” but Volume, Velocity, Variety, Veracity and Value
+      are commonly used to explain the main challenges of large-scale data.
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="section" id="data-dimensions">
+<div class="container">
+  <div class="section-head">
+    <div class="section-kicker">Chapter 7 · Data Dimensions</div>
+    <h2>Think About Data in Multiple Dimensions</h2>
+    <p>
+      A beginner should learn to classify data from more than one perspective. A single column can be numerical,
+      structured, internally generated and time-dependent at the same time.
+    </p>
+  </div>
+
+  <div class="table-wrap">
+    <table class="table">
+      <thead>
+        <tr><th>Perspective</th><th>Categories</th><th>Example</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>By nature</strong></td><td>Qualitative / Quantitative</td><td>City / Revenue</td></tr>
+        <tr><td><strong>By category</strong></td><td>Nominal / Ordinal</td><td>City / Satisfaction level</td></tr>
+        <tr><td><strong>By numeric behaviour</strong></td><td>Discrete / Continuous</td><td>Order count / Temperature</td></tr>
+        <tr><td><strong>By structure</strong></td><td>Structured / Semi-structured / Unstructured</td><td>SQL table / JSON / Image</td></tr>
+        <tr><td><strong>By origin</strong></td><td>Primary / Secondary</td><td>Survey / Published dataset</td></tr>
+        <tr><td><strong>By time</strong></td><td>Cross-sectional / Time series / Panel</td><td>Customers on one date / Daily sales / Customers tracked over time</td></tr>
+        <tr><td><strong>By ownership/source</strong></td><td>Internal / External</td><td>Company orders / Market report</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row g-4 mt-4">
+    <div class="col-lg-4">
+      <div class="info-card">
+        <h3>Cross-Sectional Data</h3>
+        <p>Data collected about many entities at one point or period in time.</p>
+        <p><strong>Example:</strong> Customer ages and purchase values recorded during one month.</p>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="info-card">
+        <h3>Time-Series Data</h3>
+        <p>Observations recorded sequentially over time.</p>
+        <p><strong>Example:</strong> Daily sales from January to December.</p>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="info-card">
+        <h3>Panel Data</h3>
+        <p>Observations on multiple entities tracked across multiple time periods.</p>
+        <p><strong>Example:</strong> Monthly spending of the same customers over two years.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="section alt" id="data-lifecycle">
+<div class="container">
+  <div class="section-head">
+    <div class="section-kicker">Chapter 8 · Data Lifecycle</div>
+    <h2>From Data Generation to Data Deletion</h2>
+    <p>
+      Data does not begin at the moment an analyst opens Pandas. It moves through a lifecycle involving creation,
+      collection, storage, processing, analysis, sharing, archiving and eventual deletion or disposal.
+    </p>
+  </div>
+
+  <div class="row g-3">
+    <div class="col-md-6 col-lg-3"><div class="info-card"><div class="icon-box">1</div><h3>Create</h3><p>A transaction, sensor reading, survey response or digital interaction creates information.</p></div></div>
+    <div class="col-md-6 col-lg-3"><div class="info-card"><div class="icon-box">2</div><h3>Collect</h3><p>The information is captured through forms, applications, APIs, sensors or other systems.</p></div></div>
+    <div class="col-md-6 col-lg-3"><div class="info-card"><div class="icon-box">3</div><h3>Store</h3><p>Data is stored in databases, files, cloud storage, warehouses or other systems.</p></div></div>
+    <div class="col-md-6 col-lg-3"><div class="info-card"><div class="icon-box">4</div><h3>Process</h3><p>Data is cleaned, transformed, joined or prepared for analysis.</p></div></div>
+    <div class="col-md-6 col-lg-3"><div class="info-card"><div class="icon-box">5</div><h3>Analyse</h3><p>Analysts explore patterns, calculate metrics and investigate questions.</p></div></div>
+    <div class="col-md-6 col-lg-3"><div class="info-card"><div class="icon-box">6</div><h3>Communicate</h3><p>Findings are communicated through reports, dashboards, presentations or applications.</p></div></div>
+    <div class="col-md-6 col-lg-3"><div class="info-card"><div class="icon-box">7</div><h3>Use</h3><p>Evidence can support operational, strategic or research decisions.</p></div></div>
+    <div class="col-md-6 col-lg-3"><div class="info-card"><div class="icon-box">8</div><h3>Archive / Delete</h3><p>Data may eventually be archived or deleted according to organisational and legal requirements.</p></div></div>
+  </div>
+
+  <div class="callout orange mt-4">
+    <strong>Data governance matters at every stage.</strong>
+    Organisations need appropriate controls for access, quality, security, privacy, retention and responsible use.
+    The exact requirements depend on the type of data, jurisdiction, organisation and applicable rules.
+  </div>
+</div>
+</section>
+
+<section class="section" id="data-quality">
+<div class="container">
+  <div class="section-head">
+    <div class="section-kicker">Chapter 9 · Data Quality</div>
+    <h2>Good Data Is More Than “Lots of Data”</h2>
+    <p>
+      A very large dataset can still be poor for analysis if the values are inaccurate, incomplete, inconsistent
+      or collected without the information needed to interpret them.
+    </p>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-md-6 col-lg-4"><div class="info-card"><h3>Accuracy</h3><p>Does the recorded value correctly represent the real-world value?</p><p><strong>Example:</strong> A product price should match the actual transaction price.</p></div></div>
+    <div class="col-md-6 col-lg-4"><div class="info-card"><h3>Completeness</h3><p>Are important values missing?</p><p><strong>Example:</strong> A dataset with no city information may not support location analysis.</p></div></div>
+    <div class="col-md-6 col-lg-4"><div class="info-card"><h3>Consistency</h3><p>Are the same concepts represented consistently?</p><p><strong>Example:</strong> “Bengaluru” and “Bangalore” may require investigation and standardisation depending on the context.</p></div></div>
+    <div class="col-md-6 col-lg-4"><div class="info-card"><h3>Validity</h3><p>Does each value follow the expected rules?</p><p><strong>Example:</strong> A rating field expected to be 1–5 should be checked for values outside that range.</p></div></div>
+    <div class="col-md-6 col-lg-4"><div class="info-card"><h3>Timeliness</h3><p>Is the information recent enough for the question?</p><p><strong>Example:</strong> Yesterday's inventory may be more useful than a five-year-old stock report for a current operational decision.</p></div></div>
+    <div class="col-md-6 col-lg-4"><div class="info-card"><h3>Uniqueness</h3><p>Are duplicate records incorrectly repeated?</p><p><strong>Example:</strong> The same order appearing twice may inflate revenue totals.</p></div></div>
+  </div>
+
+  <div class="big-definition mt-5">
+    <i class="bi bi-exclamation-circle-fill me-2"></i>
+    <strong>Golden rule:</strong> Before asking “What does the data tell me?”, first ask “Can I trust this data for the question I am asking?”
+  </div>
+</div>
+</section>
+
+<section class="section alt" id="metadata">
+<div class="container">
+  <div class="section-head">
+    <div class="section-kicker">Chapter 10 · Metadata</div>
+    <h2>Metadata: Data About Data</h2>
+    <p>
+      A dataset becomes much easier to understand when we also have information describing the dataset itself.
+    </p>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-lg-6">
+      <div class="explain">
+        <div class="big-definition">Metadata is information that describes other data.</div>
+        <p class="mt-4">
+          Suppose a column is named <code>amount</code>. Without additional information, an analyst may not know whether
+          the value represents rupees, dollars, tax-inclusive revenue, pre-tax revenue, or something else.
+        </p>
+        <p>Metadata can provide definitions, units, source information, timestamps, ownership, allowed values and other context.</p>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="table-wrap">
+        <table class="table">
+          <thead><tr><th>Metadata field</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr><td>Column name</td><td>Order_Value</td></tr>
+            <tr><td>Definition</td><td>Total value of the order.</td></tr>
+            <tr><td>Unit</td><td>Indian Rupees.</td></tr>
+            <tr><td>Data type</td><td>Decimal number.</td></tr>
+            <tr><td>Source</td><td>E-commerce transaction system.</td></tr>
+            <tr><td>Refresh frequency</td><td>Daily.</td></tr>
+            <tr><td>Allowed range</td><td>Non-negative values.</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
