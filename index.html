@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Analytics — Beginner to Insight</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --ink:#152238;
+  --muted:#53657d;
+  --blue:#315efb;
+  --blue2:#6c8cff;
+  --cyan:#10b9c7;
+  --purple:#7c4dff;
+  --green:#0f9d72;
+  --orange:#f59e0b;
+  --red:#dc4c64;
+  --paper:#f6f8fc;
+  --line:#dce4f0;
+  --card:#ffffff;
+  --shadow:0 14px 40px rgba(24,42,76,.10);
+  --radius:20px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:18px;
+  line-height:1.75;
+}
+h1,h2,h3,h4,h5{font-family:Manrope,Inter,sans-serif;font-weight:800;line-height:1.2}
+h1{font-size:clamp(2.7rem,5vw,4.8rem)}
+h2{font-size:clamp(2rem,3.4vw,3.2rem);margin-bottom:1rem}
+h3{font-size:clamp(1.45rem,2.2vw,2rem)}
+h4{font-size:1.2rem}
+p{color:var(--muted)}
+strong{color:var(--ink)}
+a{text-decoration:none}
+.navbar{
+  background:rgba(255,255,255,.95)!important;
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.navbar-brand{font-weight:800;color:var(--ink)!important}
+.brand-dot{display:inline-block;width:11px;height:11px;border-radius:50%;background:var(--blue);margin-right:8px}
+.hero{
+  position:relative;
+  overflow:hidden;
+  padding:105px 0 85px;
+  background:
+    radial-gradient(circle at 10% 10%,rgba(49,94,251,.18),transparent 35%),
+    radial-gradient(circle at 90% 15%,rgba(124,77,255,.16),transparent 30%),
+    linear-gradient(135deg,#ffffff 0%,#edf3ff 52%,#f6f1ff 100%);
+}
+.hero:after{
+  content:"";
+  position:absolute;inset:auto -10% -180px -10%;height:300px;
+  background:#f6f8fc;border-radius:50% 50% 0 0/100% 100% 0 0;
+}
+.hero-content{position:relative;z-index:2}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 14px;border:1px solid #cbd8ff;border-radius:999px;
+  color:#294bc7;background:#f4f7ff;font-weight:800;font-size:.82rem;letter-spacing:.04em;text-transform:uppercase;
+}
+.hero-sub{font-size:1.18rem;max-width:820px}
+.hero-flow{
+  margin-top:32px;display:flex;flex-wrap:wrap;gap:10px;align-items:center
+}
+.flow-chip{
+  padding:10px 14px;border-radius:12px;background:#fff;border:1px solid #d7e0f2;
+  font-weight:700;box-shadow:0 8px 20px rgba(50,75,130,.06)
+}
+.flow-arrow{color:#71809a;font-weight:800}
+.stat-card{
+  background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px;
+  box-shadow:var(--shadow);height:100%
+}
+.stat-card .num{font-size:1.9rem;font-weight:800;color:var(--blue)}
+.hero-img{
+  width:100%;height:390px;object-fit:cover;border-radius:28px;
+  border:8px solid rgba(255,255,255,.85);box-shadow:0 25px 60px rgba(32,53,100,.18)
+}
+.section{padding:80px 0;scroll-margin-top:75px}
+.section.alt{background:#fff}
+.section-head{max-width:900px;margin-bottom:38px}
+.section-kicker{color:var(--blue);font-weight:800;text-transform:uppercase;letter-spacing:.08em;font-size:.78rem}
+.explain{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow);height:100%
+}
+.explain p:last-child{margin-bottom:0}
+.callout{
+  border-left:6px solid var(--blue);background:#eef4ff;border-radius:14px;padding:20px 22px;margin:22px 0
+}
+.callout.green{border-color:var(--green);background:#ecfbf6}
+.callout.orange{border-color:var(--orange);background:#fff7e6}
+.callout.purple{border-color:var(--purple);background:#f5f0ff}
+.callout strong{display:block;margin-bottom:5px}
+.big-definition{
+  font-size:1.3rem;font-weight:700;color:var(--ink);
+  padding:24px;border-radius:18px;background:linear-gradient(135deg,#edf3ff,#f6f1ff);
+  border:1px solid #d5dff7;
+}
+.term{
+  display:inline-block;background:#e9efff;color:#2346c8;padding:2px 8px;border-radius:7px;font-weight:800
+}
+.question{
+  font-size:1.18rem;font-weight:800;color:#18345f;margin-bottom:8px
+}
+.card-grid .info-card{
+  background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;height:100%;
+  box-shadow:0 10px 28px rgba(24,42,76,.07)
+}
+.icon-box{
+  width:48px;height:48px;border-radius:14px;display:grid;place-items:center;
+  background:#edf3ff;color:var(--blue);font-size:1.35rem;margin-bottom:16px
+}
+.table-wrap{overflow:auto;border-radius:16px;border:1px solid var(--line);background:#fff}
+.table{margin:0;font-size:1rem}
+.table thead th{background:#172a4d;color:#fff;border-color:#172a4d;padding:15px}
+.table td{padding:14px;border-color:#e4e9f2;vertical-align:top}
+.highlight-row{background:#f1f6ff}
+.code-card{
+  background:#101827;color:#eaf1ff;border-radius:18px;overflow:hidden;box-shadow:var(--shadow);
+  margin:20px 0
+}
+.code-top{padding:12px 18px;background:#17243a;display:flex;justify-content:space-between;align-items:center;font-size:.9rem;color:#b9c8e6}
+pre{margin:0;padding:24px;overflow:auto;font-size:.95rem;line-height:1.65}
+code{font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace}
+.step{
+  display:flex;gap:18px;align-items:flex-start;background:#fff;border:1px solid var(--line);
+  border-radius:18px;padding:22px;margin-bottom:14px;box-shadow:0 8px 24px rgba(24,42,76,.05)
+}
+.step-no{
+  min-width:44px;height:44px;border-radius:50%;display:grid;place-items:center;
+  background:var(--blue);color:#fff;font-weight:800
+}
+.workflow-line{border-left:3px solid #cad7f7;margin-left:21px;padding-left:30px}
+.metric{
+  border-radius:18px;padding:22px;background:#fff;border:1px solid var(--line);height:100%
+}
+.metric .value{font-size:2rem;font-weight:800;color:var(--blue)}
+.chart-box{
+  background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow)
+}
+.chart-box canvas{max-height:340px}
+.img-card{border-radius:20px;overflow:hidden;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow)}
+.img-card img{width:100%;height:240px;object-fit:cover}
+.img-card .caption{padding:18px}
+.nav-pills .nav-link{color:#38506e;font-weight:700;border-radius:12px}
+.nav-pills .nav-link.active{background:var(--blue)}
+.sticky-map{position:sticky;top:85px}
+.quiz-option{
+  display:block;width:100%;text-align:left;border:1px solid var(--line);background:#fff;border-radius:12px;
+  padding:13px 16px;margin:8px 0;font-weight:600;color:var(--ink)
+}
+.quiz-option:hover{background:#f2f6ff;border-color:#b8c8f6}
+.quiz-result{display:none;margin-top:16px;padding:18px;border-radius:14px;background:#ecfbf6;border:1px solid #b9ead9}
+footer{background:#101827;color:#dce6f7;padding:55px 0}
+footer p{color:#aebbd0}
+.progress{height:5px;position:fixed;top:0;left:0;right:0;z-index:2000;border-radius:0;background:transparent}
+.progress-bar{background:linear-gradient(90deg,var(--blue),var(--purple),var(--cyan))}
+.projector-toggle{
+  border:1px solid #bfcce8;background:#fff;color:#21385d;border-radius:10px;padding:7px 11px;font-weight:700
+}
+
+/* Projector Mode: larger, cleaner and high-contrast for classroom display */
+body.projector{font-size:22px;line-height:1.82}
+body.projector h1{font-size:clamp(3.2rem,6vw,5.7rem)}
+body.projector h2{font-size:clamp(2.5rem,4.2vw,4rem)}
+body.projector h3{font-size:clamp(1.8rem,2.8vw,2.5rem)}
+body.projector .section{padding:105px 0}
+body.projector .section p,body.projector li{font-size:1.05em}
+body.projector .table{font-size:1.05rem}
+body.projector .hero-img{height:450px}
+body.projector .code-card pre{font-size:1.02rem}
+body.projector .sticky-map{position:static}
+body.projector .navbar{font-size:1rem}
+
+/* No-copy / presentation-friendly behavior */
+.no-copy, .no-copy *{
+  -webkit-user-select:none!important;
+  -moz-user-select:none!important;
+  user-select:none!important;
+}
+.code-card, .code-card *{-webkit-user-select:none!important;user-select:none!important}
+
+@media(max-width:991px){
+  body{font-size:17px}
+  .hero{padding-top:80px}
+  .hero-img{height:280px;margin-top:30px}
+  .sticky-map{position:static}
+}
+@media(max-width:575px){
+  body{font-size:16px}
+  .hero{padding:65px 0}
+  .section{padding:58px 0}
+}
+@media print{
+  .navbar,.progress,.projector-toggle,.quiz-section,footer{display:none!important}
+  body{font-size:15pt;background:#fff}
+  .section{padding:35px 0;page-break-inside:avoid}
+  .card,.explain,.info-card{box-shadow:none}
+}
+</style>
+</head>
+
+<body class="no-copy">
+
+<div class="progress"><div id="scrollProgress" class="progress-bar" style="width:0%"></div></div>
+
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="#top"><span class="brand-dot"></span>Data Analytics Academy</a>
+    <div class="d-flex gap-2 align-items-center">
+      <button class="projector-toggle" id="projectorBtn"><i class="bi bi-projector"></i> Projector Mode</button>
+      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navMenu"><span class="navbar-toggler-icon"></span></button>
+    </div>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#basics">Basics</a></li>
+        <li class="nav-item"><a class="nav-link" href="#workflow">Workflow</a></li>
+        <li class="nav-item"><a class="nav-link" href="#python">Python</a></li>
+        <li class="nav-item"><a class="nav-link" href="#pandas">Pandas</a></li>
+        <li class="nav-item"><a class="nav-link" href="#visualization">Visualization</a></li>
+        <li class="nav-item"><a class="nav-link" href="#eda">EDA</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<header id="top" class="hero">
+  <div class="container hero-content">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-7">
+        <span class="eyebrow"><i class="bi bi-bar-chart-line-fill"></i> Beginner-Friendly Complete Tutorial</span>
+        <h1 class="mt-4">Data Analysis: From Raw Data to Meaningful Decisions</h1>
+        <p class="hero-sub mt-4">
+          Data analysis is not simply about making charts. It is a structured process of asking a useful question,
+          understanding the data, cleaning problems, exploring patterns, explaining what those patterns mean,
+          and finally using evidence to support a practical decision.
+        </p>
+        <div class="hero-flow">
+          <span class="flow-chip">Problem</span><span class="flow-arrow">→</span>
+          <span class="flow-chip">Data</span><span class="flow-arrow">→</span>
+          <span class="flow-chip">Python</span><span class="flow-arrow">→</span>
+          <span class="flow-chip">Pandas</span><span class="flow-arrow">→</span>
+          <span class="flow-chip">Visualization</span><span class="flow-arrow">→</span>
+          <span class="flow-chip">EDA</span><span class="flow-arrow">→</span>
+          <span class="flow-chip">Insight</span><span class="flow-arrow">→</span>
+          <span class="flow-chip">Decision</span>
+        </div>
+        <div class="row g-3 mt-4">
+          <div class="col-sm-4"><div class="stat-card"><div class="num">100,000</div><div>Example StyleCart orders</div></div></div>
+          <div class="col-sm-4"><div class="stat-card"><div class="num">₹14.1 Cr</div><div>Example revenue</div></div></div>
+          <div class="col-sm-4"><div class="stat-card"><div class="num">4.2 ★</div><div>Example average rating</div></div></div>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <img class="hero-img" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1400&q=85" alt="Data analytics dashboard">
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+<div class="container">
+  <div class="section-head">
+    <div class="section-kicker">Start Here</div>
+    <h2>How to use this tutorial</h2>
+    <p>This page is deliberately written for beginners. Every major concept answers four questions: <strong>What is it?</strong>, <strong>Why do we need it?</strong>, <strong>How does it work?</strong>, and <strong>Where is it used?</strong></p>
+  </div>
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="explain">
+        <div class="big-definition">
+          <i class="bi bi-lightbulb-fill me-2"></i>
+          <strong>Core idea:</strong> A data analyst converts raw observations into understandable evidence and then communicates what the evidence means.
+        </div>
+        <div class="callout mt-4">
+          <strong>Classroom tip</strong>
+          Read the highlighted definition first. Then read the explanation below it. Finally, look at the example and ask yourself what question the example is answering.
+        </div>
+        <p>
+          You do not need to memorize every function on the first day. Your first goal is to understand the complete journey:
+          <strong>question → data → cleaning → exploration → visualization → insight → action.</strong>
+        </p>
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="explain">
+        <h3>Learning path</h3>
+        <ol class="mb-0">
+          <li>Understand data and analysis.</li>
+          <li>Learn the five analytics questions.</li>
+          <li>Understand the StyleCart case study.</li>
+          <li>Learn Python foundations.</li>
+          <li>Work with NumPy and Pandas.</li>
+          <li>Clean and validate data.</li>
+          <li>Visualize information.</li>
+          <li>Perform EDA and communicate insights.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="basics" class="section alt">
+<div class="container">
+  <div class="section-head">
+    <div class="section-kicker">Chapter 1 · The Basics</div>
+    <h2>What is Data?</h2>
+    <p>Before learning analysis, we must understand the thing we are analysing.</p>
+  </div>
+  <div class="row g-4">
+    <div class="col-lg-7">
+      <div class="explain">
+        <div class="big-definition">Data is any recorded fact, number, observation, response, measurement, or piece of information that can be stored and examined.</div>
+        <p class="mt-4">
+          Data is created whenever an event is recorded. When a customer buys a product, the order creates data.
+          When a student receives a mark, the mark becomes data. When a fitness tracker records steps,
+          that measurement becomes data.
+        </p>
+        <p>
+          Data does not have to be a large spreadsheet. It can be a number, sentence, date, category, image,
+          yes/no answer, location, or another recorded observation.
+        </p>
+        <div class="callout green">
+          <strong>Simple way to remember it</strong>
+          Data is the <em>raw material</em>. Analysis is the process used to turn that raw material into understanding.
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-5">
+      <div class="row g-3 card-grid">
+        <div class="col-6"><div class="info-card"><div class="icon-box"><i class="bi bi-cart-check"></i></div><h4>Online Shopping</h4><p>Products viewed, purchased, returned and rated.</p></div></div>
+        <div class="col-6"><div class="info-card"><div class="icon-box"><i class="bi bi-instagram"></i></div><h4>Social Media</h4><p>Likes, comments, follows and time spent.</p></div></div>
+        <div class="col-6"><div class="info-card"><div class="icon-box"><i class="bi bi-mortarboard"></i></div><h4>Education</h4><p>Marks, attendance, grades and submissions.</p></div></div>
+        <div class="col-6"><div class="info-card"><div class="icon-box"><i class="bi bi-bank"></i></div><h4>Banking</h4><p>Deposits, payments, withdrawals and transactions.</p></div></div>
+        <div class="col-6"><div class="info-card"><div class="icon-box"><i class="bi bi-heart-pulse"></i></div><h4>Healthcare</h4><p>Patient records, observations and test results.</p></div></div>
+        <div class="col-6"><div class="info-card"><div class="icon-box"><i class="bi bi-cloud-sun"></i></div><h4>Weather</h4><p>Temperature, rainfall, humidity and pressure.</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5">
+    <h3>Common forms of data</h3>
+    <div class="table-wrap mt-3">
+      <table class="table">
+        <thead><tr><th>Type</th><th>Example</th><th>What it tells us</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Numbers</strong></td><td>1,499; 4.5; 1200</td><td>Measurements, amounts, scores or quantities.</td></tr>
+          <tr><td><strong>Text</strong></td><td>“Loved the fit!”</td><td>Comments, descriptions and feedback.</td></tr>
+          <tr><td><strong>Dates</strong></td><td>14-Nov-2025</td><td>When an event happened.</td></tr>
+          <tr><td><strong>Categories</strong></td><td>Jackets, Jeans</td><td>Groups to which observations belong.</td></tr>
+          <tr><td><strong>Images</strong></td><td>Product photo</td><td>Visual information that can also be analysed computationally.</td></tr>
+          <tr><td><strong>Boolean</strong></td><td>Returned = False</td><td>A two-state value such as Yes/No or True/False.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+  <div class="section-head">
+    <div class="section-kicker">Chapter 2 · Meaning</div>
+    <h2>What is Data Analysis?</h2>
+  </div>
+  <div class="row g-4">
+    <div class="col-lg-7">
+      <div class="explain">
+        <div class="big-definition">Data analysis is the process of cleaning, exploring, interpreting and communicating data to find useful information that supports better decisions.</div>
+        <p class="mt-4">
+          Imagine a doctor receiving a patient with symptoms. The doctor does not immediately prescribe a treatment.
+          The doctor collects information, checks it, performs tests, looks for patterns, reaches a diagnosis,
+          and then decides what action is appropriate.
+        </p>
+        <p>
+          Data analysis follows a similar logic: <strong>raw data → checking → exploration → evidence → interpretation → decision.</strong>
+        </p>
+      </div>
+    </div>
+    <div class="col-lg-5">
+      <div class="explain">
+        <h3>The analysis journey</h3>
+        <div class="workflow-line">
+          <div class="step"><div class="step-no">1</div><div><strong>Raw Data</strong><p>Messy records are collected from a source.</p></div></div>
+          <div class="step"><div class="step-no">2</div><div><strong>Cleaning</strong><p>Errors, gaps, duplicates and invalid values are checked.</p></div></div>
+          <div class="step"><div class="step-no">3</div><div><strong>Exploration</strong><p>Questions are asked and patterns are investigated.</p></div></div>
+          <div class="step"><div class="step-no">4</div><div><strong>Insight</strong><p>The analyst explains what the pattern means.</p></div></div>
+          <div class="step"><div class="step-no">5</div><div><strong>Decision</strong><p>The organisation decides what to do next.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="section alt">
+<div class="container">
+  <div class="section-head">
+    <div class="section-kicker">Five Questions</div>
+    <h2>Types of Data Analytics</h2>
+    <p>The presentation uses five practical questions that move from understanding the past to considering future action.</p>
+  </div>
+  <div class="row g-4">
+    <div class="col-md-6 col-xl-4"><div class="info-card"><div class="icon-box">01</div><h3>Descriptive</h3><div class="question">What happened?</div><p>Descriptive analysis summarizes historical data. For example: “Sales dropped 12% in March.”</p><div class="callout">It tells us <strong>what has already happened</strong>.</div></div></div>
+    <div class="col-md-6 col-xl-4"><div class="info-card"><div class="icon-box">02</div><h3>Diagnostic</h3><div class="question">Why did it happen?</div><p>Diagnostic analysis investigates possible reasons behind an observed result. For example: “Late deliveries in Pune were associated with cancellations.”</p><div class="callout">It tells us <strong>what may explain the result</strong>.</div></div></div>
+    <div class="col-md-6 col-xl-4"><div class="info-card"><div class="icon-box">03</div><h3>Monitoring</h3><div class="question">What is happening now?</div><p>Monitoring uses current or frequently refreshed data to track performance. For example: “342 orders have been recorded today.”</p><div class="callout">It tells us <strong>what is happening currently</strong>.</div></div></div>
+    <div class="col-md-6 col-xl-6"><div class="info-card"><div class="icon-box">04</div><h3>Predictive</h3><div class="question">What could happen next?</div><p>Predictive analysis uses historical patterns and models to estimate future outcomes. For example: “Jacket demand may rise in November.”</p><div class="callout purple">A prediction is an <strong>estimate</strong>, not a guarantee.</div></div></div>
+    <div class="col-md-6 col-xl-6"><div class="info-card"><div class="icon-box">05</div><h3>Prescriptive</h3><div class="question">What decision should we consider?</div><p>Prescriptive analysis connects evidence to possible actions. For example: “Increase jacket stock before the seasonal demand period.”</p><div class="callout orange">The goal is to connect <strong>evidence with action</strong>.</div></div></div>
+  </div>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+  <div class="section-head">
+    <div class="section-kicker">Chapter 3 · Applications</div>
+    <h2>Where is Data Analysis Used?</h2>
+    <p>The same basic idea appears across industries: collect information, find meaningful patterns, and use the findings to support action.</p>
+  </div>
+  <div class="row g-3 card-grid">
+    <div class="col-md-6 col-lg-4"><div class="info-card"><h4>Movie Streaming</h4><p>Viewing and rating information can be used to recommend content.</p></div></div>
+    <div class="col-md-6 col-lg-4"><div class="info-card"><h4>Online Retail</h4><p>Purchase behaviour can be examined to understand products and customer demand.</p></div></div>
+    <div class="col-md-6 col-lg-4"><div class="info-card"><h4>Banking</h4><p>Transaction patterns can be analysed to identify unusual activity for further review.</p></div></div>
+    <div class="col-md-6 col-lg-4"><div class="info-card"><h4>Healthcare</h4><p>Patient records can be analysed to identify patterns and risks for clinical teams to investigate.</p></div></div>
+    <div class="col-md-6 col-lg-4"><div class="info-card"><h4>Sports</h4><p>Player and match statistics can support performance analysis and tactical planning.</p></div></div>
+    <div class="col-md-6 col-lg-4"><div class="info-card"><h4>Marketing</h4><p>Campaign data can show which channels and messages are associated with sales or engagement.</p></div></div>
+    <div class="col-md-6 col-lg-4"><div class="info-card"><h4>Food Delivery</h4><p>Order history can help teams understand demand by time and location.</p></div></div>
+    <div class="col-md-6 col-lg-4"><div class="info-card"><h4>HR & People</h4><p>Workforce data can be used to understand performance, hiring and employee turnover.</p></div></div>
+    <div class="col-md-6 col-lg-4"><div class="info-card"><h4>Government</h4><p>Traffic, population and service data can inform planning and public services.</p></div></div>
+  </div>
+</div>
+</section>
+
+<section class="section alt">
+<div class="container">
+  <div class="section-head">
+    <div class="section-kicker">Case Study</div>
+    <h2>Meet StyleCart</h2>
+    <p>StyleCart is a fictional online clothing store used throughout this tutorial so that every technical concept connects to one understandable business story.</p>
+  </div>
+  <div class="row g-4 align-items-stretch">
+    <div class="col-lg-7">
+      <div class="explain">
+        <div class="big-definition">Management does not want a spreadsheet full of numbers. Management wants answers to business questions.</div>
+        <div class="row g-3 mt-3">
+          <div class="col-md-6"><div class="info-card"><h4>Which products earn the most revenue?</h4><p>Compare revenue across products and categories.</p></div></div>
+          <div class="col-md-6"><div class="info-card"><h4>Which cities have the highest sales?</h4><p>Group orders by city and compare totals.</p></div></div>
+          <div class="col-md-6"><div class="info-card"><h4>Which months sell the most?</h4><p>Create a time-based analysis and identify seasonal patterns.</p></div></div>
+          <div class="col-md-6"><div class="info-card"><h4>Are discounts increasing sales?</h4><p>Compare discount levels with quantity, revenue and other measures.</p></div></div>
+          <div class="col-md-6"><div class="info-card"><h4>Which products get poor ratings?</h4><p>Summarize ratings and inspect low-rating groups.</p></div></div>
+          <div class="col-md-6"><div class="info-card"><h4>Who are the most valuable customers?</h4><p>Use customer-level totals to understand purchasing value.</p></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-5">
+      <div class="explain">
+        <h3>Example dashboard numbers</h3>
+        <div class="row g-3">
+          <div class="col-6"><div class="metric"><div class="value">₹14.1 Cr</div><div>Revenue</div></div></div>
+          <div class="col-6"><div class="metric"><div class="value">100K</div><div>Orders</div></div></div>
+          <div class="col-6"><div class="metric"><div class="value">4.2 ★</div><div>Average rating</div></div></div>
+          <div class="col-6"><div class="metric"><div class="value">9</div><div>Example fields shown in the case</div></div></div>
+        </div>
+        <div class="callout mt-4">These figures belong to the fictional teaching case. They illustrate the analysis process and should not be interpreted as real company statistics.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="workflow" class="section">
+<div class="container">
+  <div class="section-head">
+    <div class="section-kicker">Chapter 4 · Process</div>
+    <h2>The Complete Data Analysis Workflow</h2>
+    <p>A strong project starts with a business question rather than immediately opening a charting library.</p>
+  </div>
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="step"><div class="step-no">1</div><div><h3>Business Problem</h3><p><strong>Question:</strong> Which products drive revenue?</p><p>The first step defines what the organisation actually needs to understand. A vague question creates a vague analysis.</p></div></div>
+      <div class="step"><div class="step-no">2</div><div><h3>Data Collection</h3><p><strong>Example:</strong> Export orders from the website and app.</p><p>Identify where the required information lives and collect the relevant records.</p></div></div>
+      <div class="step"><div class="step-no">3</div><div><h3>Data Understanding</h3><p><strong>Question:</strong> What does each column mean?</p><p>Before calculating anything, understand the rows, columns, units, data types and meaning of each field.</p></div></div>
+      <div class="step"><div class="step-no">4</div><div><h3>Data Cleaning</h3><p>Check missing ratings, duplicates, invalid values, inconsistent text and incorrect data types.</p></div></div>
+      <div class="step"><div class="step-no">5</div><div><h3>Data Transformation</h3><p>Create useful fields such as <span class="term">Month</span> or <span class="term">Revenue</span> when the raw data does not already contain them.</p></div></div>
+      <div class="step"><div class="step-no">6</div><div><h3>Exploratory Data Analysis</h3><p>Explore the data by city, category, month, price, quantity, discount and other meaningful dimensions.</p></div></div>
+      <div class="step"><div class="step-no">7</div><div><h3>Data Visualization</h3><p>Use suitable charts to make trends, comparisons, distributions and relationships easier to understand.</p></div></div>
+      <div class="step"><div class="step-no">8</div><div><h3>Insights</h3><p>Translate a chart or statistical result into a clear sentence describing what the evidence shows.</p></div></div>
+      <div class="step"><div class="step-no">9</div><div><h3>Business Decision</h3><p>Use the insight as evidence when considering an action, such as planning stock or advertising.</p></div></div>
+    </div>
+    <div class="col-lg-4">
+      <div class="explain sticky-map">
+        <h3>Important: the workflow is iterative</h3>
+        <p>Real projects rarely move perfectly from Step 1 to Step 9. During EDA, you may discover a missing value problem. During visualization, you may discover an unusual value that needs investigation.</p>
+        <div class="callout orange">
+          <strong>Do not blindly delete unusual data.</strong>
+          In the StyleCart example, a quantity of 500 is investigated and kept because it represents a genuine bulk order.
+        </div>
+        <p>Good analysis means checking whether a value is wrong, unusual but valid, or evidence of a special situation.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="python" class="section alt">
+<div class="container">
+  <div class="section-head">
+    <div class="section-kicker">Step 1 · Python</div>
+    <h2>Python: The Foundation</h2>
+    <p>Python is the programming language used to connect the rest of the analysis tools.</p>
+  </div>
+  <div class="row g-4">
+    <div class="col-lg-7">
+      <div class="explain">
+        <div class="big-definition">Python is a beginner-friendly programming language with readable syntax and a large ecosystem of libraries for data analysis, automation, web development and AI.</div>
+        <p class="mt-4"><strong>Why do analysts need it?</strong> Analysts repeatedly load data, transform columns, filter records, calculate metrics and automate reports. Python allows these tasks to be written as repeatable programs rather than performed manually each time.</p>
+        <p><strong>How does it fit in?</strong> NumPy, Pandas and many visualization tools run within the Python ecosystem.</p>
+      </div>
+    </div>
+    <div class="col-lg-5">
+      <div class="explain">
+        <h3>Core fundamentals</h3>
+        <ul>
+          <li>Variables</li><li>int, float, str and bool</li><li>Arithmetic and comparison operators</li>
+          <li>Lists and tuples</li><li>Dictionaries</li><li>if / elif / else</li><li>for and while loops</li><li>Functions</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="code-card">
+    <div class="code-top"><span><i class="bi bi-filetype-py"></i> stylecart_revenue.py</span><span>Beginner example</span></div>
+<pre><code># Revenue for one StyleCart order
+price = 2000
+quantity = 3
+
+revenue = price * quantity
+print(revenue)
+
+sizes = ["S", "M", "L"]
+
+if revenue &gt; 5000:
+    print("High-value order!")</code></pre>
+  </div>
+
+  <div class="row g-4 mt-2">
+    <div class="col-md-4"><div class="info-card"><h4>What is it?</h4><p>A programming language with simple and readable syntax.</p></div></div>
+    <div class="col-md-4"><div class="info-card"><h4>Why use it?</h4><p>It automates repetitive analysis and provides thousands of reusable libraries.</p></div></div>
+    <div class="col-md-4"><div class="info-card"><h4>Where is it used?</h4><p>Data analysis, automation, web applications, machine learning and AI.</p></div></div>
+  </div>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+  <div class="section-head">
+    <div class="section-kicker">Step 2 · NumPy</div>
+    <h2>NumPy: Fast Mathematics on Numbers</h2>
+    <p>NumPy provides efficient numerical arrays and mathematical operations that form an important foundation for data work.</p>
+  </div>
+  <div class="row g-4">
+    <div class="col-lg-6"><div class="explain">
+      <div class="big-definition">NumPy is a Python library designed for fast numerical computation using arrays.</div>
+      <p class="mt-4">A normal Python list can store numbers, but NumPy arrays are designed for numerical operations over many values at once. This makes operations such as averages, sums, scaling and mathematical transformations concise and efficient.</p>
+      <div class="callout">The important beginner concept is <strong>vectorized computation</strong>: apply an operation to an entire array instead of writing a loop for every element.</div>
+    </div></div>
+    <div class="col-lg-6"><div class="explain">
+      <h3>Common operations</h3>
+      <div class="table-wrap">
+        <table class="table">
+          <thead><tr><th>Operation</th><th>Purpose</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr><td>mean</td><td>Average</td><td>np.mean(sales)</td></tr>
+            <tr><td>median</td><td>Middle value</td><td>np.median(sales)</td></tr>
+            <tr><td>min / max</td><td>Smallest / largest</td><td>np.min(sales)</td></tr>
+            <tr><td>std</td><td>Standard deviation</td><td>np.std(sales)</td></tr>
+            <tr><td>sum</td><td>Total</td><td>np.sum(sales)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div></div>
+  </div>
+
+  <div class="code-card mt-4">
+    <div class="code-top"><span><i class="bi bi-filetype-py"></i> daily_sales.py</span><span>NumPy example</span></div>
+<pre><code>import numpy as np
+
+sales = np.array([1200, 850, 2300, 1750, 990, 3100, 1450])
+
+print(sales[0])       # first value
+print(sales[1:4])     # slicing
+print(sales.mean())   # average
+print(sales.sum())    # total
+
+gst_sales = sales * 1.18
+print(gst_sales)</code></pre>
+  </div>
+
+  <div class="callout green">
+    <strong>Why not only use Python lists?</strong>
+    NumPy arrays support vectorized numerical operations and are designed to work efficiently with large numerical datasets.
+    The presentation describes NumPy as often being substantially faster for large numerical operations; exact speed depends on the operation, hardware and implementation.
+  </div>
+</div>
+</section>
+
+<section id="pandas" class="section alt">
+<div class="container">
+  <div class="section-head">
+    <div class="section-kicker">Step 3 · Pandas</div>
+    <h2>Pandas: Working with Tables</h2>
+    <p>Pandas is the central tool in this learning path for loading, inspecting, cleaning, filtering and summarizing tabular data.</p>
+  </div>
+  <div class="row g-4">
+    <div class="col-lg-6"><div class="explain">
+      <div class="big-definition">A Pandas <span class="term">DataFrame</span> is a table of rows and columns. A <span class="term">Series</span> is a single column of values.</div>
+      <p class="mt-4">If you are comfortable with Excel tables, a DataFrame will feel familiar. The difference is that Pandas lets you perform repeatable operations through code.</p>
+      <p><strong>Why is this important?</strong> A dataset may contain thousands or millions of rows. Code lets you apply the same operation consistently without manually editing every row.</p>
+    </div></div>
+    <div class="col-lg-6">
+      <div class="code-card">
+        <div class="code-top"><span><i class="bi bi-filetype-py"></i> explore_orders.py</span><span>Pandas basics</span></div>
+<pre><code>import pandas as pd
+
+df = pd.read_csv("stylecart_orders.csv")
+
+df.head()
+df.tail()
+
+df.shape
+df.columns
+df.info()
+df.describe()
+
+df["Revenue"]
+
+df[df["City"] == "Mumbai"]
+
+df.sort_values("Revenue", ascending=False)
+
+df.groupby("Category")["Revenue"].sum()</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5">
+    <h3>What each beginner command means</h3>
+    <div class="table-wrap mt-3">
+      <table class="table">
+        <thead><tr><th>Command</th><th>Meaning</th><th>Why it matters</th></tr></thead>
+        <tbody>
+          <tr><td><code>df.head()</code></td><td>Shows the first rows.</td><td>Quickly check whether the file loaded correctly.</td></tr>
+          <tr><td><code>df.shape</code></td><td>Returns rows and columns.</td><td>Understand dataset size.</td></tr>
+          <tr><td><code>df.info()</code></td><td>Shows column names, types and non-null information.</td><td>Find type and missing-value issues.</td></tr>
+          <tr><td><code>df.describe()</code></td><td>Provides descriptive statistics for numeric columns.</td><td>Understand centre and spread.</td></tr>
+          <tr><td><code>df["Revenue"]</code></td><td>Selects one column.</td><td>Work with one variable.</td></tr>
+          <tr><td>Filtering</td><td>Select rows matching a condition.</td><td>Analyse a city, category or other subgroup.</td></tr>
+          <tr><td><code>groupby()</code></td><td>Creates summaries by groups.</td><td>Compare categories, cities or other dimensions.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+  <div class="section-head">
+    <div class="section-kicker">Data Cleaning</div>
+    <h2>Why Data Cleaning Matters</h2>
+    <p>Real-world data is often incomplete, inconsistent or incorrectly formatted. If the input is wrong, the final analysis can also be misleading.</p>
+  </div>
+  <div class="row g-4">
+    <div class="col-lg-7">
+      <div class="table-wrap">
+        <table class="table">
+          <thead><tr><th>Problem</th><th>Typical Pandas tool</th><th>Explanation</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Missing values</strong></td><td>isnull(), fillna(), dropna()</td><td>Identify blanks and decide whether to fill, remove or investigate them.</td></tr>
+            <tr><td><strong>Duplicates</strong></td><td>duplicated(), drop_duplicates()</td><td>Find repeated records and determine whether they are accidental duplicates.</td></tr>
+            <tr><td><strong>Wrong types</strong></td><td>astype()</td><td>Convert values into appropriate numeric, date or categorical representations.</td></tr>
+            <tr><td><strong>Misspellings</strong></td><td>str.strip(), replace()</td><td>Make category names consistent, such as “bangalore” and “Bengaluru” when they represent the same category.</td></tr>
+            <tr><td><strong>Invalid values</strong></td><td>between()</td><td>Check whether values fall inside an expected range, such as ratings from 1 to 5.</td></tr>
+            <tr><td><strong>Outliers</strong></td><td>describe(), boxplot()</td><td>Investigate unusually high or low values before deciding what they mean.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-lg-5">
+      <div class="explain">
+        <h3>Cleaning is not deleting</h3>
+        <p>A common beginner mistake is to assume that an unusual value must be an error.</p>
+        <div class="callout orange">
+          <strong>StyleCart example: quantity = 500</strong>
+          A quantity of 500 is unusual compared with ordinary orders, but the presentation explicitly treats it as a genuine bulk order and keeps it.
+        </div>
+        <p>The correct question is not “Is this value unusual?” The better question is “Is this value incorrect, or is it unusual but valid?”</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="visualization" class="section alt">
+<div class="container">
+  <div class="section-head">
+    <div class="section-kicker">Visualization</div>
+    <h2>Why Do We Need Data Visualization?</h2>
+    <p>A table can contain thousands of values. A suitable chart can make a trend, comparison, relationship or unusual observation easier to see.</p>
+  </div>
+  <div class="row g-4 align-items-center">
+    <div class="col-lg-6">
+      <div class="explain">
+        <div class="big-definition">Data visualization is the practice of representing data with visual elements such as charts, graphs and dashboards so that patterns and comparisons are easier to understand.</div>
+        <p class="mt-4">Visualization does not replace analysis. It supports analysis by making important patterns more visible and easier to communicate.</p>
+        <div class="row g-3">
+          <div class="col-6"><div class="info-card"><h4>Trend</h4><p>Are sales rising or falling over time?</p></div></div>
+          <div class="col-6"><div class="info-card"><h4>Comparison</h4><p>Which category or city has higher values?</p></div></div>
+          <div class="col-6"><div class="info-card"><h4>Relationship</h4><p>Do two numerical variables move together?</p></div></div>
+          <div class="col-6"><div class="info-card"><h4>Distribution</h4><p>How are values spread across observations?</p></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="chart-box">
+        <h4>Illustrative monthly revenue</h4>
+        <canvas id="revenueChart"></canvas>
+        <p class="small mt-3 mb-0">Example values from the teaching case. The visual highlights a November–December increase.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+  <div class="section-head">
+    <div class="section-kicker">Step 4 · Matplotlib</div>
+    <h2>Matplotlib: The Foundation of Python Charts</h2>
+    <p>Matplotlib provides detailed control over charts and is a foundational visualization library in Python.</p>
+  </div>
+  <div class="row g-4">
+    <div class="col-lg-6"><div class="explain">
+      <div class="big-definition">Matplotlib is a Python visualization library used to create and customize static charts.</div>
+      <p class="mt-4"><strong>Line chart:</strong> useful for trends over time.</p>
+      <p><strong>Bar chart:</strong> useful for comparing categories.</p>
+      <p><strong>Scatter plot:</strong> useful for exploring relationships between numerical variables.</p>
+      <p><strong>Histogram:</strong> useful for understanding the distribution of values.</p>
+      <p><strong>Box plot:</strong> useful for comparing spread and investigating potential outliers.</p>
+      <p><strong>Pie chart:</strong> can show parts of a whole when the number of categories is small.</p>
+    </div></div>
+    <div class="col-lg-6">
+      <div class="code-card">
+        <div class="code-top"><span><i class="bi bi-filetype-py"></i> line_chart.py</span><span>Matplotlib</span></div>
+<pre><code>import matplotlib.pyplot as plt
+
+months = ["Oct", "Nov", "Dec"]
+sales = [147, 193, 203]
+
+plt.plot(months, sales, marker="o")
+plt.title("StyleCart Sales")
+plt.xlabel("Month")
+plt.ylabel("Revenue (lakh)")
+plt.show()</code></pre>
+      </div>
+      <div class="callout">
+        <strong>Remember the chart question.</strong>
+        Do not choose a chart because it looks attractive. Choose it because its structure matches the question you are trying to answer.
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="section alt">
+<div class="container">
+  <div class="section-head">
+    <div class="section-kicker">Step 5 · Seaborn</div>
+    <h2>Seaborn: Statistical and Exploratory Charts</h2>
+    <p>Seaborn works with Matplotlib and Pandas to make statistical visualization and exploratory analysis more convenient.</p>
+  </div>
+  <div class="row g-4">
+    <div class="col-lg-6">
+      <div class="explain">
+        <div class="big-definition">Seaborn is a Python visualization library built on Matplotlib that provides convenient functions for statistical graphics.</div>
+        <p class="mt-4">It is especially useful during EDA because many charts can be created directly from DataFrames with relatively little code.</p>
+        <div class="table-wrap">
+          <table class="table">
+            <thead><tr><th>Chart</th><th>Typical question</th></tr></thead>
+            <tbody>
+              <tr><td>countplot()</td><td>How many observations are in each category?</td></tr>
+              <tr><td>barplot()</td><td>How does an average or summary compare between groups?</td></tr>
+              <tr><td>histplot()</td><td>How are numerical values distributed?</td></tr>
+              <tr><td>boxplot()</td><td>How does spread differ and are there potential outliers?</td></tr>
+              <tr><td>scatterplot()</td><td>How are two numerical variables related?</td></tr>
+              <tr><td>heatmap()</td><td>How do numerical variables correlate?</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="chart-box">
+        <h4>Illustrative correlation matrix</h4>
+        <canvas id="corrChart"></canvas>
+        <p class="small mt-3">Example only. A correlation value describes linear association in the analysed data; it does not by itself prove causation.</p>
+      </div>
+      <div class="code-card mt-4">
+        <div class="code-top"><span><i class="bi bi-filetype-py"></i> heatmap.py</span><span>Seaborn</span></div>
+<pre><code>import seaborn as sns
+
+corr = df.corr(numeric_only=True)
+sns.heatmap(corr, annot=True)</code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+  <div class="section-head">
+    <div class="section-kicker">Step 6 · Plotly</div>
+    <h2>Plotly: Interactive Visualization</h2>
+    <p>Plotly is useful when the viewer should be able to interact with a chart instead of seeing only a static image.</p>
+  </div>
+  <div class="row g-4">
+    <div class="col-lg-7">
+      <div class="explain">
+        <div class="big-definition">Plotly is a visualization library that supports interactive charts with features such as hover information, zooming, panning and filtering.</div>
+        <div class="row g-3 mt-3">
+          <div class="col-6"><div class="info-card"><h4><i class="bi bi-cursor-fill"></i> Hover</h4><p>Inspect exact values without crowding every number onto the chart.</p></div></div>
+          <div class="col-6"><div class="info-card"><h4><i class="bi bi-zoom-in"></i> Zoom</h4><p>Focus on a smaller time period or region of the data.</p></div></div>
+          <div class="col-6"><div class="info-card"><h4><i class="bi bi-funnel-fill"></i> Filter</h4><p>Interact with categories or legends to focus the view.</p></div></div>
+          <div class="col-6"><div class="info-card"><h4><i class="bi bi-map-fill"></i> Explore</h4><p>Build interactive dashboards and maps where appropriate.</p></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-5">
+      <div class="img-card">
+        <img src="https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1200&q=85" alt="Team discussing analytics">
+        <div class="caption"><strong>Visualization is communication.</strong><p class="mb-0">A good visual should help the audience understand the intended message without requiring them to decode the chart.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="table-wrap mt-4">
+    <table class="table">
+      <thead><tr><th>Tool</th><th>Main role</th><th>Typical use</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Matplotlib</strong></td><td>Flexible static plotting</td><td>Reports, research, custom charts and quick checks.</td></tr>
+        <tr><td><strong>Seaborn</strong></td><td>Statistical visualization</td><td>EDA, distributions, group comparisons and relationships.</td></tr>
+        <tr><td><strong>Plotly</strong></td><td>Interactive visualization</td><td>Dashboards, web applications, presentations and interactive exploration.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</section>
+
+<section id="eda" class="section alt">
+<div class="container">
+  <div class="section-head">
+    <div class="section-kicker">Chapter 5 · EDA</div>
+    <h2>Exploratory Data Analysis</h2>
+    <p>EDA is where the analyst investigates the dataset before drawing conclusions or building models.</p>
+  </div>
+  <div class="row g-4">
+    <div class="col-lg-7">
+      <div class="explain">
+        <div class="big-definition">Exploratory Data Analysis, or EDA, is the systematic investigation of a dataset to understand its structure, quality, distributions, relationships, unusual values and possible patterns.</div>
+        <p class="mt-4">Think of EDA as detective work. You begin with questions, inspect the evidence, test possible explanations, visualize important relationships, and document what you discover.</p>
+        <div class="callout purple">
+          <strong>The key question is:</strong>
+          “What story is hidden inside the data, and what evidence supports that story?”
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-5">
+      <div class="explain">
+        <h3>Three levels of analysis</h3>
+        <div class="info-card mb-3"><h4>Univariate</h4><p>Study one variable. Example: the distribution of order prices.</p></div>
+        <div class="info-card mb-3"><h4>Bivariate</h4><p>Study two variables. Example: discount versus quantity.</p></div>
+        <div class="info-card"><h4>Multivariate</h4><p>Study three or more variables together. Example: city × month × revenue.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5">
+    <h3>Complete 13-step EDA workflow</h3>
+    <div class="row g-3 mt-2">
+      <div class="col-md-6 col-lg-4"><div class="info-card"><div class="icon-box">1</div><h4>Load dataset</h4><p>Use <code>pd.read_csv()</code> or the appropriate loader.</p></div></div>
+      <div class="col-md-6 col-lg-4"><div class="info-card"><div class="icon-box">2</div><h4>Understand shape</h4><p>Use <code>df.shape</code> to understand rows and columns.</p></div></div>
+      <div class="col-md-6 col-lg-4"><div class="info-card"><div class="icon-box">3</div><h4>Check data types</h4><p>Use <code>df.info()</code> and inspect column meanings.</p></div></div>
+      <div class="col-md-6 col-lg-4"><div class="info-card"><div class="icon-box">4</div><h4>Missing values</h4><p>Use <code>df.isnull().sum()</code> and investigate the cause.</p></div></div>
+      <div class="col-md-6 col-lg-4"><div class="info-card"><div class="icon-box">5</div><h4>Duplicates</h4><p>Use <code>df.duplicated()</code> and decide whether duplicates are valid.</p></div></div>
+      <div class="col-md-6 col-lg-4"><div class="info-card"><div class="icon-box">6</div><h4>Descriptive statistics</h4><p>Use <code>df.describe()</code> to inspect centre and spread.</p></div></div>
+      <div class="col-md-6 col-lg-4"><div class="info-card"><div class="icon-box">7</div><h4>Univariate analysis</h4><p>Use histograms and other single-variable views.</p></div></div>
+      <div class="col-md-6 col-lg-4"><div class="info-card"><div class="icon-box">8</div><h4>Bivariate analysis</h4><p>Use scatter plots and group comparisons.</p></div></div>
+      <div class="col-md-6 col-lg-4"><div class="info-card"><div class="icon-box">9</div><h4>Multivariate analysis</h4><p>Study several variables together when the question requires it.</p></div></div>
+      <div class="col-md-6 col-lg-4"><div class="info-card"><div class="icon-box">10</div><h4>Outlier detection</h4><p>Use box plots and methods such as IQR to investigate unusual values.</p></div></div>
+      <div class="col-md-6 col-lg-4"><div class="info-card"><div class="icon-box">11</div><h4>Correlation</h4><p>Use <code>df.corr()</code> to inspect numerical relationships.</p></div></div>
+      <div class="col-md-6 col-lg-4"><div class="info-card"><div class="icon-box">12</div><h4>Visualization</h4><p>Present the important patterns through appropriate charts or dashboards.</p></div></div>
+      <div class="col-md-6 col-lg-4"><div class="info-card"><div class="icon-box">13</div><h4>Insights</h4><p>Write clear findings and connect them to the original business question.</p></div></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="section">
+<div class="container">
+  <div class="section-head">
+    <div class="section-kicker">EDA in Action</div>
+    <h2>What the StyleCart EDA Revealed</h2>
+    <p>The following findings come from the fictional teaching dataset described in the presentation. They illustrate how an analyst can move from exploration to a written finding.</p>
+  </div>
+  <div class="row g-3">
+    <div class="col-md-6 col-lg-4"><div class="info-card"><div class="icon-box"><i class="bi bi-bag-check"></i></div><h4>T-Shirts</h4><p>T-Shirts generate the highest number of orders in the example analysis.</p></div></div>
+    <div class="col-md-6 col-lg-4"><div class="info-card"><div class="icon-box"><i class="bi bi-currency-rupee"></i></div><h4>Jackets</h4><p>Jackets generate the highest revenue in the example analysis.</p></div></div>
+    <div class="col-md-6 col-lg-4"><div class="info-card"><div class="icon-box"><i class="bi bi-geo-alt"></i></div><h4>Markets</h4><p>Bengaluru and Mumbai are identified as strong markets in the example.</p></div></div>
+    <div class="col-md-6 col-lg-4"><div class="info-card"><div class="icon-box"><i class="bi bi-calendar3"></i></div><h4>Seasonality</h4><p>Sales rise sharply in November and December in the fictional analysis.</p></div></div>
+    <div class="col-md-6 col-lg-4"><div class="info-card"><div class="icon-box"><i class="bi bi-people"></i></div><h4>Age group</h4><p>Customers aged 20–30 place 58% of orders in the example dataset.</p></div></div>
+    <div class="col-md-6 col-lg-4"><div class="info-card"><div class="icon-box"><i class="bi bi-percent"></i></div><h4>Discounts</h4><p>The example suggests heavier discounts are associated with more items but thinner profit margins.</p></div></div>
+  </div>
+  <div class="callout mt-4">
+    <strong>Important interpretation rule</strong>
+    These are findings from a fictional teaching case. They demonstrate how an analyst communicates a dataset-specific pattern; they are not universal claims about clothing retail.
+  </div>
+</div>
+</section>
+
+<section class="section alt">
+<div class="container">
+  <div class="section-head">
+    <div class="section-kicker">Insights → Action</div>
+    <h2>From Analysis to Business Decision</h2>
+    <p>The final goal is not to produce a collection of charts. The final goal is to explain what the evidence means.</p>
+  </div>
+  <div class="row g-4">
+    <div class="col-md-3"><div class="metric"><div class="value">100K</div><strong>Rows</strong><p>Raw order records provide the evidence base.</p></div></div>
+    <div class="col-md-3"><div class="metric"><div class="value">EDA</div><strong>Patterns</strong><p>Explore categories, months, cities and other variables.</p></div></div>
+    <div class="col-md-3"><div class="metric"><div class="value">Insight</div><strong>Meaning</strong><p>Explain the important pattern in a sentence.</p></div></div>
+    <div class="col-md-3"><div class="metric"><div class="value">Action</div><strong>Decision</strong><p>Consider what the organisation should do with the evidence.</p></div></div>
+  </div>
+
+  <div class="explain mt-4">
+    <h3>StyleCart example</h3>
+    <div class="row g-3">
+      <div class="col-md-4"><div class="info-card"><div class="section-kicker">Analysis</div><h4>Jackets sell more during winter.</h4><p>The analyst compares category performance across months.</p></div></div>
+      <div class="col-md-4"><div class="info-card"><div class="section-kicker">Insight</div><h4>Demand rises strongly between November and January.</h4><p>The pattern connects category performance with time.</p></div></div>
+      <div class="col-md-4"><div class="info-card"><div class="section-kicker">Decision</div><h4>Increase jacket inventory and advertising before winter.</h4><p>This is an example of turning an observed pattern into a possible business action.</p></div></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="projects" class="section">
+<div class="container">
+  <div class="section-head">
+    <div class="section-kicker">Practice</div>
+    <h2>Beginner Data Analytics Projects</h2>
+    <p>After learning the tools, practice the same workflow on different datasets. The important skill is not merely writing code; it is asking a question and explaining the result.</p>
+  </div>
+  <div class="row g-4">
+    <div class="col-md-6 col-lg-4"><div class="info-card"><div class="icon-box"><i class="bi bi-cart3"></i></div><h3>Retail Sales</h3><p>Analyse revenue, quantity, category performance, monthly trends and customer behaviour.</p><p><strong>Practice:</strong> Pandas + EDA + charts.</p></div></div>
+    <div class="col-md-6 col-lg-4"><div class="info-card"><div class="icon-box"><i class="bi bi-mortarboard"></i></div><h3>Student Performance</h3><p>Study marks, attendance and subject-level patterns.</p><p><strong>Practice:</strong> cleaning + grouping + visualization.</p></div></div>
+    <div class="col-md-6 col-lg-4"><div class="info-card"><div class="icon-box"><i class="bi bi-cloud-sun"></i></div><h3>Weather Analysis</h3><p>Explore temperature, rainfall and seasonal changes.</p><p><strong>Practice:</strong> time series + line charts.</p></div></div>
+    <div class="col-md-6 col-lg-4"><div class="info-card"><div class="icon-box"><i class="bi bi-film"></i></div><h3>Movie Dataset</h3><p>Compare genres, ratings, release years and other available fields.</p><p><strong>Practice:</strong> categorical analysis + distributions.</p></div></div>
+    <div class="col-md-6 col-lg-4"><div class="info-card"><div class="icon-box"><i class="bi bi-heart-pulse"></i></div><h3>Healthcare Dataset</h3><p>Explore numerical and categorical patient-related variables while respecting privacy and context.</p><p><strong>Practice:</strong> EDA + correlation + visualization.</p></div></div>
+    <div class="col-md-6 col-lg-4"><div class="info-card"><div class="icon-box"><i class="bi bi-bar-chart-fill"></i></div><h3>Marketing Campaign</h3><p>Compare campaign outcomes, channels and engagement measures.</p><p><strong>Practice:</strong> grouping + comparison + dashboard thinking.</p></div></div>
+  </div>
+</div>
+</section>
+
+<section class="section alt">
+<div class="container">
+  <div class="section-head">
+    <div class="section-kicker">Quick Reference</div>
+    <h2>How to Choose a Chart</h2>
+    <p>Start with the question, then choose the visual structure that makes the answer easiest to see.</p>
+  </div>
+  <div class="table-wrap">
+    <table class="table">
+      <thead><tr><th>If your question is...</th><th>Consider...</th><th>Reason</th></tr></thead>
+      <tbody>
+        <tr><td>How does a value change over time?</td><td><strong>Line chart</strong></td><td>The connected points emphasize movement across an ordered time axis.</td></tr>
+        <tr><td>Which category is larger?</td><td><strong>Bar chart</strong></td><td>Bar lengths make category comparisons easy.</td></tr>
+        <tr><td>How are values distributed?</td><td><strong>Histogram</strong></td><td>Shows how numerical observations are spread across ranges.</td></tr>
+        <tr><td>Are two numbers related?</td><td><strong>Scatter plot</strong></td><td>Shows individual observations across two numerical axes.</td></tr>
+        <tr><td>Are there unusual values?</td><td><strong>Box plot</strong></td><td>Summarizes spread and highlights potential outliers.</td></tr>
+        <tr><td>How do variables correlate?</td><td><strong>Heatmap</strong></td><td>Displays a matrix of correlation values visually.</td></tr>
+        <tr><td>Does the audience need to explore?</td><td><strong>Interactive Plotly chart</strong></td><td>Supports hover, zoom, filtering and interactive inspection.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</section>
+
+<section class="section quiz-section">
+<div class="container">
+  <div class="section-head">
+    <div class="section-kicker">Check Your Understanding</div>
+    <h2>Beginner Quiz</h2>
+    <p>Answer each question and then check your result.</p>
+  </div>
+  <div class="explain">
+    <div class="mb-4">
+      <div class="question">1. What is the main purpose of data analysis?</div>
+      <button class="quiz-option" data-correct="true">A. To turn data into useful information that supports decisions.</button>
+      <button class="quiz-option">B. To create as many charts as possible.</button>
+      <button class="quiz-option">C. To delete unusual values.</button>
+    </div>
+    <div class="mb-4">
+      <div class="question">2. Which analytics question asks “Why did it happen?”</div>
+      <button class="quiz-option">A. Descriptive</button>
+      <button class="quiz-option" data-correct="true">B. Diagnostic</button>
+      <button class="quiz-option">C. Predictive</button>
+    </div>
+    <div class="mb-4">
+      <div class="question">3. Which Pandas object represents a table?</div>
+      <button class="quiz-option" data-correct="true">A. DataFrame</button>
+      <button class="quiz-option">B. Scalar</button>
+      <button class="quiz-option">C. Boolean</button>
+    </div>
+    <div class="mb-4">
+      <div class="question">4. What should you do with an unusual value?</div>
+      <button class="quiz-option">A. Always delete it.</button>
+      <button class="quiz-option" data-correct="true">B. Investigate whether it is wrong or valid.</button>
+      <button class="quiz-option">C. Always replace it with the mean.</button>
+    </div>
+    <div class="mb-4">
+      <div class="question">5. What is EDA?</div>
+      <button class="quiz-option">A. Only creating dashboards.</button>
+      <button class="quiz-option">B. Only calculating averages.</button>
+      <button class="quiz-option" data-correct="true">C. Systematically exploring a dataset to understand its structure, quality and patterns.</button>
+    </div>
+    <button id="quizBtn" class="btn btn-primary btn-lg px-4"><i class="bi bi-check2-circle"></i> Check Answers</button>
+    <div id="quizResult" class="quiz-result"></div>
+  </div>
+</div>
+</section>
+
+<section class="section alt">
+<div class="container">
+  <div class="section-head">
+    <div class="section-kicker">Roadmap</div>
+    <h2>Where to Go From Here</h2>
+  </div>
+  <div class="row g-4">
+    <div class="col-lg-6"><div class="explain"><h3>1 · Learn the tools</h3><ol><li>Python fundamentals</li><li>NumPy</li><li>Pandas</li><li>Matplotlib</li><li>Seaborn</li><li>Plotly</li></ol></div></div>
+    <div class="col-lg-6"><div class="explain"><h3>2 · Apply and grow</h3><ol><li>Practice EDA</li><li>Work with real datasets</li><li>Build projects</li><li>Create a portfolio</li><li>Move toward Data Science, Machine Learning or Business Intelligence</li></ol></div></div>
+  </div>
+  <div class="big-definition mt-4">
+    Data analysis is not about creating charts. It is about asking the right questions, understanding the data, discovering meaningful patterns, explaining those patterns clearly, and connecting evidence to decisions.
+  </div>
+</div>
+</section>
+
+<footer>
+<div class="container">
+  <div class="row g-4">
+    <div class="col-lg-7">
+      <h2 class="text-white">Data Analytics Academy</h2>
+      <p>A projector-friendly, beginner-first tutorial based on the StyleCart learning presentation: “Data Analysis: From Raw Data to Meaningful Decisions.”</p>
+    </div>
+    <div class="col-lg-5">
+      <h4 class="text-white">Classroom reminder</h4>
+      <p>Ask a question → inspect the data → clean carefully → explore → visualize → explain the evidence → consider the decision.</p>
+    </div>
+  </div>
+</div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script>
+/* Disable common copy/context actions for presentation use. */
+document.addEventListener("contextmenu", e => e.preventDefault());
+document.addEventListener("copy", e => e.preventDefault());
+document.addEventListener("cut", e => e.preventDefault());
+document.addEventListener("dragstart", e => e.preventDefault());
+document.addEventListener("selectstart", e => e.preventDefault());
+document.addEventListener("keydown", e => {
+  const k = e.key.toLowerCase();
+  if ((e.ctrlKey || e.metaKey) && ["c","x","u","s"].includes(k)) e.preventDefault();
+});
+
+/* Scroll progress */
+window.addEventListener("scroll", () => {
+  const h = document.documentElement;
+  const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+  document.getElementById("scrollProgress").style.width = pct + "%";
+});
+
+/* Projector mode */
+document.getElementById("projectorBtn").addEventListener("click", function(){
+  document.body.classList.toggle("projector");
+  const on = document.body.classList.contains("projector");
+  this.innerHTML = on
+    ? '<i class="bi bi-fullscreen-exit"></i> Normal Mode'
+    : '<i class="bi bi-projector"></i> Projector Mode';
+});
+
+/* Charts */
+new Chart(document.getElementById("revenueChart"), {
+  type:"line",
+  data:{
+    labels:["Aug","Sep","Oct","Nov","Dec","Jan"],
+    datasets:[{
+      label:"Revenue (₹ lakh)",
+      data:[121,132,147,193,203,178],
+      borderWidth:4,
+      tension:.35,
+      pointRadius:5
+    }]
+  },
+  options:{
+    responsive:true,
+    plugins:{legend:{display:true}},
+    scales:{y:{beginAtZero:true,title:{display:true,text:"₹ lakh"}}}
+  }
+});
+
+new Chart(document.getElementById("corrChart"), {
+  type:"bar",
+  data:{
+    labels:["Price ↔ Revenue","Quantity ↔ Revenue","Discount ↔ Quantity","Price ↔ Rating"],
+    datasets:[{
+      label:"Illustrative correlation",
+      data:[0.72,0.41,0.48,0.18],
+      borderWidth:1
+    }]
+  },
+  options:{
+    responsive:true,
+    indexAxis:"y",
+    scales:{x:{min:-1,max:1,title:{display:true,text:"Correlation value"}}}
+  }
+});
+
+/* Quiz */
+document.querySelectorAll(".quiz-option").forEach(btn => {
+  btn.addEventListener("click", function(){
+    const group = this.parentElement;
+    group.querySelectorAll(".quiz-option").forEach(x => x.style.outline = "none");
+    this.style.outline = "3px solid rgba(49,94,251,.25)";
+    this.dataset.selected = "true";
+  });
+});
+
+document.getElementById("quizBtn").addEventListener("click", function(){
+  const questions = [...document.querySelectorAll(".question")];
+  let score = 0;
+  questions.forEach(q => {
+    const box = q.parentElement;
+    const selected = box.querySelector('.quiz-option[data-selected="true"]');
+    if (selected && selected.dataset.correct === "true") score++;
+  });
+  const result = document.getElementById("quizResult");
+  result.style.display = "block";
+  result.innerHTML = `<strong>Your score: ${score}/${questions.length}</strong><br>
+  ${score === questions.length ? "Excellent. You have understood the core concepts." :
+    score >= 3 ? "Good progress. Revisit the highlighted explanations for the questions you missed." :
+    "Use the tutorial again and focus on the definitions and examples before retaking the quiz."}`;
+});
+</script>
+</body>
+</html>
